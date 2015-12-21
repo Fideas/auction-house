@@ -28,6 +28,22 @@
             android:layout_marginBottom="@dimen/content_vertical_margin"
             android:layout_marginTop="@dimen/content_vertical_margin">
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_name"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/content_vertical_margin"
+            android:layout_marginTop="@dimen/content_vertical_margin">
+
             <AutoCompleteTextView
                 android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -60,22 +76,22 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/log_in_button"
+            android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/button_vertical_margin"
             android:layout_marginTop="@dimen/button_vertical_margin"
             android:padding="@dimen/button_padding"
-            android:text="@string/action_login" />
+            android:text="@string/action_create_account" />
 
         <TextView
-            android:id="@+id/register_link"
+            android:id="@+id/link_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/login_vertical_margin"
             android:gravity="center"
-            android:text="@string/prompt_register"
-            android:textSize="@dimen/link_text_size"/>
+            android:text="@string/prompt_login"
+            android:textSize="@dimen/link_text_size" />
 
     </LinearLayout>
 </ScrollView>

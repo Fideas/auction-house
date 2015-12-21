@@ -8,7 +8,7 @@
     <dimen name="content_vertical_margin">8dp</dimen>
     <dimen name="button_vertical_margin">24dp</dimen>
     <dimen name="button_padding">12dp</dimen>
-    <dimen name="register_text_size">16dp</dimen>
+    <dimen name="link_text_size">16sp</dimen>
     <!-- Logo dimensions -->
     <dimen name="big_logo_height">72dp</dimen>
 </resources>
