@@ -41,10 +41,10 @@ public final class AuctionProvider {
         //Uri to match auctions the user owns/has published
         @InexactContentUri(
                 name = "AUCTIONS_OWNER",
-                path = Path.AUCTIONS + "*",
+                path = Path.AUCTIONS + "/owner/*",
                 type = "vnd.android.cursor.dir/auction",
                 whereColumn = AuctionColumns.AUCTION_OWNER,
-                pathSegment = 1)
+                pathSegment = 2)
         public static Uri withOwner(String owner) {
             return buildUri(Path.AUCTIONS, owner);
         }
@@ -52,10 +52,10 @@ public final class AuctionProvider {
         //Uri to match auctions where the user has the highest bid
         @InexactContentUri(
                 name = "AUCTIONS_BIDDING",
-                path = Path.AUCTIONS + "*",
+                path = Path.AUCTIONS + "/bid/*",
                 type = "vnd.android.cursor.dir/auction",
                 whereColumn = AuctionColumns.CURRENT_BIDDER,
-                pathSegment = 1)
+                pathSegment = 2)
         public static Uri withBidder(String bidder) {
             return buildUri(Path.AUCTIONS, bidder);
         }
