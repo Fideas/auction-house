@@ -91,7 +91,7 @@ public class CreateAuctionActivity extends AppCompatActivity {
         values.put(AuctionColumns.DESCRIPTION, mDescriptionView.getText().toString());
         //Add the price only if its not empty, otherwise insert the default value
         if (!TextUtils.isEmpty(mPriceView.getText())) {
-            values.put(AuctionColumns.PRICE, mPriceView.getText().toString());
+            values.put(AuctionColumns.PRICE, Float.parseFloat(mPriceView.getText().toString()));
         }
         values.put(AuctionColumns.EXPIRATION_DATE, Utilities.dateStringToMillis(
                 mDateView.getText().toString(),

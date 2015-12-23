@@ -28,7 +28,7 @@ public interface AuctionColumns {
     @DataType(DataType.Type.TEXT)
     String DESCRIPTION = "description";
 
-    @DataType(DataType.Type.INTEGER)
+    @DataType(DataType.Type.REAL)
     @DefaultValue("0")
     String PRICE = "price";
 
