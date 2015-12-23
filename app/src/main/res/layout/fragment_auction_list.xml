@@ -11,7 +11,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/auction_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/list_vertical_margin"
+        android:layout_marginTop="@dimen/list_vertical_margin" />
 
     <TextView
         android:id="@+id/empty_list"
