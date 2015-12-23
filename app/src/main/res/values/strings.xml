@@ -35,4 +35,6 @@
     <string name="prompt_price">Price</string>
     <string name="prompt_date">End Date</string>
     <string name="prompt_description">Product Description</string>
+    <string name="error_invalid_price">Price must have exactly zero or two decimals</string>
+    <string name="error_invalid_date">Date must be formatted as MM/DD/YYYY</string>
 </resources>
