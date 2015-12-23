@@ -1,5 +1,6 @@
 package com.nicolascarrasco.www.auctionhouse;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -24,14 +25,14 @@ public class Utilities {
         return date.getTime();
     }
 
-    public static boolean isValidPrice(String price){
+    public static boolean isValidPrice(String price) {
         /* This expression matches either an integer (ex. 100) or a rational expressed in decimal
          * notation with exactly 2 decimal digits (ex. 99.99)
          */
         return price.matches("\\d+(\\.\\d{2})?");
     }
 
-    public static boolean isValidDate(String date){
+    public static boolean isValidDate(String date) {
         DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
             format.parse(date);
@@ -40,5 +41,15 @@ public class Utilities {
             return false;
         }
         return true;
+    }
+
+    public static String formatPrice(String price) {
+        return "$".concat(price).concat(" USD");
+    }
+
+    public static String formatDate(Context context, float dayInMillis) {
+        DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
+        return context.getResources().getString(R.string.label_expires_on)
+                .concat(format.format(dayInMillis));
     }
 }

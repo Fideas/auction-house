@@ -48,7 +48,7 @@ public final class AuctionProvider {
                 whereColumn = AuctionColumns.AUCTION_OWNER,
                 pathSegment = 2)
         public static Uri withOwner(String owner) {
-            return buildUri(Path.AUCTIONS, owner);
+            return buildUri(Path.AUCTIONS, "owner", owner);
         }
 
         //Uri to match auctions where the user has the highest bid
@@ -59,7 +59,7 @@ public final class AuctionProvider {
                 whereColumn = AuctionColumns.CURRENT_BIDDER,
                 pathSegment = 2)
         public static Uri withBidder(String bidder) {
-            return buildUri(Path.AUCTIONS, bidder);
+            return buildUri(Path.AUCTIONS, "bid", bidder);
         }
 
         //TODO: Implement the Uri to match where the user has put a bid in the past
