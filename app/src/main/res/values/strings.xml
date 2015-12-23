@@ -27,5 +27,12 @@
     <string name="title_section_my_bids">My Bids</string>
     <string name="title_section_my_auctions">My Auctions</string>
     <string name="empty_auction_list">There are no auctions to show</string>
-    <string name="title_activity_create_auction">CreateAuction</string>
+
+
+    <!-- Strings for the CreateAuctionActivity -->
+    <string name="title_activity_create_auction">Create New Auction</string>
+    <string name="prompt_title">Title</string>
+    <string name="prompt_price">Price</string>
+    <string name="prompt_date">End Date</string>
+    <string name="prompt_description">Product Description</string>
 </resources>
