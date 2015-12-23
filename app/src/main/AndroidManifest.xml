@@ -39,6 +39,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <provider
+            android:name="com.nicolascarrasco.www.auctionhouse.provider.AuctionProvider"
+            android:authorities="com.nicolascarrasco.www.auctionhouse.data.AuctionProvider"
+            android:exported="false" />
     </application>
 
 </manifest>

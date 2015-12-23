@@ -10,7 +10,9 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 /**
  * Created by Nicolás Carrasco on 22/12/2015.
  */
-@ContentProvider(authority = AuctionProvider.AUTHORITY, database = AuctionDatabase.class)
+@ContentProvider(authority = AuctionProvider.AUTHORITY,
+        database = AuctionDatabase.class,
+        packageName = "com.nicolascarrasco.www.auctionhouse.provider")
 public final class AuctionProvider {
     public static final String AUTHORITY =
             "com.nicolascarrasco.www.auctionhouse.data.AuctionProvider";
