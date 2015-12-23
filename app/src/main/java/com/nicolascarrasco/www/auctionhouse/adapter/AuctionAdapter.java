@@ -1,6 +1,7 @@
 package com.nicolascarrasco.www.auctionhouse.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.nicolascarrasco.www.auctionhouse.DetailActivity;
 import com.nicolascarrasco.www.auctionhouse.R;
 import com.nicolascarrasco.www.auctionhouse.Utilities;
 import com.nicolascarrasco.www.auctionhouse.data.AuctionColumns;
@@ -73,7 +75,8 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
         }
     }
 
-    public static class AuctionViewHolder extends RecyclerView.ViewHolder {
+    public class AuctionViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
 
         public final TextView mTitleView;
         public final TextView mPriceView;
@@ -86,6 +89,14 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
             mPriceView = (TextView) view.findViewById(R.id.list_item_price_text);
             mDescriptionView = (TextView) view.findViewById(R.id.list_item_description_text);
             mDateView = (TextView) view.findViewById(R.id.list_item_date_text);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mCursor.moveToPosition(getAdapterPosition());
+            int id = mCursor.getInt(mCursor.getColumnIndex(AuctionColumns._ID));
+            mContext.startActivity(new Intent(mContext, DetailActivity.class));
         }
     }
 }
