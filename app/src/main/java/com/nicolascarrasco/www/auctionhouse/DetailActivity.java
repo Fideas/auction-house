@@ -19,6 +19,7 @@ public class DetailActivity extends AppCompatActivity
     private final static long DEFAULT_ID = -1;
     private static final int DETAIL_LOADER = 0;
     private long mId;
+    private String mUser;
     private float mPrice;
 
     private TextView mTitleView;
@@ -31,6 +32,7 @@ public class DetailActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         mId = getIntent().getLongExtra(Utilities.AUCTION_ID_EXTRA_KEY, DEFAULT_ID);
+        mUser = getIntent().getStringExtra(Utilities.USER_EXTRA_KEY);
         getSupportLoaderManager().initLoader(DETAIL_LOADER, null, this);
 
         mTitleView = (TextView) findViewById(R.id.detail_title_text);
@@ -76,7 +78,7 @@ public class DetailActivity extends AppCompatActivity
         //When bidding we will just add 5 dollars to the actual price
         values.put(AuctionColumns.PRICE, mPrice + 5.0f);
         //TODO: Change hardcoded user
-        values.put(AuctionColumns.CURRENT_BIDDER, "foo@example.com");
+        values.put(AuctionColumns.CURRENT_BIDDER, mUser);
         getApplicationContext().getContentResolver().update(AuctionProvider.Auctions.withId(mId),
                 values,
                 null,

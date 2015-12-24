@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(USER_KEY, mUser);
         editor.apply();
     }
-    
+
     private void launchCreateAuctionActivity() {
         Intent intent = new Intent(this, CreateAuctionActivity.class);
         intent.putExtra(Utilities.USER_EXTRA_KEY, mUser);
