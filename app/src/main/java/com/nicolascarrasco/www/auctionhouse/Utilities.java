@@ -1,6 +1,9 @@
 package com.nicolascarrasco.www.auctionhouse;
 
+import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -12,7 +15,8 @@ import java.util.Date;
  */
 public class Utilities {
 
-    public final static String AUCTION_ID_KEY = "auction_id";
+    public final static String AUCTION_ID_EXTRA_KEY = "auction_id";
+    public final static String USER_EXTRA_KEY = "user";
 
     public static long dateStringToMillis(String dateString, String tag) {
         DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
@@ -45,6 +49,20 @@ public class Utilities {
         return true;
     }
 
+    public static boolean isUserValid(String user){
+        return user.length() > 4;
+    }
+
+    public static boolean isEmailValid(String email) {
+        //TODO: Replace this with real email validation
+        return email.contains("@");
+    }
+
+    public static boolean isPasswordValid(String password) {
+        //TODO: Replace this with real password validation
+        return password.length() > 4;
+    }
+
     public static String formatPrice(float price) {
         return "$".concat(String.format("%.2f",price)).concat(" USD");
     }
@@ -53,5 +71,17 @@ public class Utilities {
         DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
         return context.getResources().getString(R.string.label_expires_on)
                 .concat(format.format(dayInMillis));
+    }
+
+    /**
+     * Shows the progress UI and hides the login form.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public static void showProgress(ProgressDialog dialog, final boolean show) {
+        if (show) {
+            dialog.show();
+        } else {
+            dialog.dismiss();
+        }
     }
 }

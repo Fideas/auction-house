@@ -30,7 +30,7 @@ public class DetailActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        mId = getIntent().getLongExtra(Utilities.AUCTION_ID_KEY, DEFAULT_ID);
+        mId = getIntent().getLongExtra(Utilities.AUCTION_ID_EXTRA_KEY, DEFAULT_ID);
         getSupportLoaderManager().initLoader(DETAIL_LOADER, null, this);
 
         mTitleView = (TextView) findViewById(R.id.detail_title_text);

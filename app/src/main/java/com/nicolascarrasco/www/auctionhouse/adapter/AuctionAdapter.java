@@ -97,7 +97,7 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
             mCursor.moveToPosition(getAdapterPosition());
             long id = mCursor.getLong(mCursor.getColumnIndex(AuctionColumns._ID));
             Intent intent = new Intent(mContext, DetailActivity.class);
-            intent.putExtra(Utilities.AUCTION_ID_KEY, id);
+            intent.putExtra(Utilities.AUCTION_ID_EXTRA_KEY, id);
             mContext.startActivity(intent);
         }
     }
