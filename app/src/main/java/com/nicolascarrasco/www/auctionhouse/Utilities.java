@@ -12,6 +12,8 @@ import java.util.Date;
  */
 public class Utilities {
 
+    public final static String AUCTION_ID_KEY = "auction_id";
+
     public static long dateStringToMillis(String dateString, String tag) {
         DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
         Date date;

@@ -62,6 +62,18 @@ public final class AuctionProvider {
             return buildUri(Path.AUCTIONS, "bid", bidder);
         }
 
+        //Uri to match a single auction by id
+        @InexactContentUri(
+                name = "AUCTION_ID",
+                path = Path.AUCTIONS + "/#",
+                type = "vnd.android.cursor.item/auction",
+                whereColumn = AuctionColumns._ID,
+                pathSegment = 1)
+        public static Uri withId(long id){
+            return buildUri(Path.AUCTIONS, String.valueOf(id));
+        }
+
+
         //TODO: Implement the Uri to match where the user has put a bid in the past
     }
 }
