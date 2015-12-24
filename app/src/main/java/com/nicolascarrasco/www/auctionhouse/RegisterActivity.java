@@ -132,6 +132,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
+            mRegisterTask = null;
+            Utilities.showProgress(mProgressDialog, false);
+
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra(Utilities.USER_EXTRA_KEY, mEmail);
             startActivity(intent);
