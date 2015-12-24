@@ -1,9 +1,11 @@
 package com.nicolascarrasco.www.auctionhouse;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,7 @@ import com.nicolascarrasco.www.auctionhouse.data.AuctionProvider;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String USER_KEY = "user_key";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -37,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -70,8 +72,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mUser = getIntent().getStringExtra(Utilities.USER_EXTRA_KEY);
-
+        if (getIntent().hasExtra(Utilities.USER_EXTRA_KEY)) {
+            mUser = getIntent().getStringExtra(Utilities.USER_EXTRA_KEY);
+        } else if (PreferenceManager.getDefaultSharedPreferences(this).contains(USER_KEY)) {
+            mUser = PreferenceManager.getDefaultSharedPreferences(this).getString(USER_KEY,"");
+        }
     }
 
     @Override
@@ -96,13 +101,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USER_KEY, mUser);
+        editor.apply();
+    }
+    
     private void launchCreateAuctionActivity() {
         Intent intent = new Intent(this, CreateAuctionActivity.class);
         intent.putExtra(Utilities.USER_EXTRA_KEY, mUser);
         startActivity(intent);
     }
 
-    public String getUser(){
+    public String getUser() {
         return this.mUser;
     }
 
@@ -160,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
             mAdapter = new AuctionAdapter(getContext(),
                     emptyView,
-                    ((MainActivity)getActivity()).getUser());
+                    ((MainActivity) getActivity()).getUser());
             mRecyclerView.setAdapter(mAdapter);
 
             return rootView;
@@ -180,10 +194,10 @@ public class MainActivity extends AppCompatActivity {
                     loaderUri = AuctionProvider.Auctions.CONTENT_URI;
                     break;
                 case WON_AUCTIONS_SECTION:
-                    loaderUri = AuctionProvider.Auctions.withOwner(((MainActivity)getActivity()).getUser());
+                    loaderUri = AuctionProvider.Auctions.withOwner(((MainActivity) getActivity()).getUser());
                     break;
                 case CURRENTLY_BIDDING_SECTION:
-                    loaderUri = AuctionProvider.Auctions.withBidder(((MainActivity)getActivity()).getUser());
+                    loaderUri = AuctionProvider.Auctions.withBidder(((MainActivity) getActivity()).getUser());
                     break;
                 default:
                     throw new UnsupportedOperationException("Unknown section: " + mSectionNumber);
