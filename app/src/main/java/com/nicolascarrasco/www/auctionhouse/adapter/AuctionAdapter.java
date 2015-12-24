@@ -53,12 +53,10 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
         }
         String title = mCursor.getString(mCursor.getColumnIndex(AuctionColumns.PRODUCT_NAME));
         float price = mCursor.getFloat(mCursor.getColumnIndex(AuctionColumns.PRICE));
-        String description = mCursor.getString(mCursor.getColumnIndex(AuctionColumns.DESCRIPTION));
         float date = mCursor.getFloat(mCursor.getColumnIndex(AuctionColumns.EXPIRATION_DATE));
 
         holder.mTitleView.setText(title);
         holder.mPriceView.setText(Utilities.formatPrice(price));
-        holder.mDescriptionView.setText(description);
         holder.mDateView.setText(Utilities.formatDate(mContext, date));
 
     }
@@ -82,14 +80,12 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
 
         public final TextView mTitleView;
         public final TextView mPriceView;
-        public final TextView mDescriptionView;
         public final TextView mDateView;
 
         public AuctionViewHolder(View view) {
             super(view);
             mTitleView = (TextView) view.findViewById(R.id.list_item_title_text);
             mPriceView = (TextView) view.findViewById(R.id.list_item_price_text);
-            mDescriptionView = (TextView) view.findViewById(R.id.list_item_description_text);
             mDateView = (TextView) view.findViewById(R.id.list_item_date_text);
             view.setOnClickListener(this);
         }
