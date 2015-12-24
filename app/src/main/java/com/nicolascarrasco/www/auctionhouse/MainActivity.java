@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private String mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+        mUser = getIntent().getStringExtra(Utilities.USER_EXTRA_KEY);
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,8 +98,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchCreateAuctionActivity() {
         Intent intent = new Intent(this, CreateAuctionActivity.class);
+        intent.putExtra(Utilities.USER_EXTRA_KEY, mUser);
         startActivity(intent);
     }
+
+    public String getUser(){
+        return this.mUser;
+    }
+
 
     /**
      * A placeholder fragment containing a simple view.
@@ -150,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
 
             View emptyView = rootView.findViewById(R.id.empty_list);
 
-            mAdapter = new AuctionAdapter(getContext(), emptyView);
+            mAdapter = new AuctionAdapter(getContext(),
+                    emptyView,
+                    ((MainActivity)getActivity()).getUser());
             mRecyclerView.setAdapter(mAdapter);
 
             return rootView;
@@ -170,10 +180,10 @@ public class MainActivity extends AppCompatActivity {
                     loaderUri = AuctionProvider.Auctions.CONTENT_URI;
                     break;
                 case WON_AUCTIONS_SECTION:
-                    loaderUri = AuctionProvider.Auctions.withOwner("foo@example.com");
+                    loaderUri = AuctionProvider.Auctions.withOwner(((MainActivity)getActivity()).getUser());
                     break;
                 case CURRENTLY_BIDDING_SECTION:
-                    loaderUri = AuctionProvider.Auctions.withBidder("foo@example.com");
+                    loaderUri = AuctionProvider.Auctions.withBidder(((MainActivity)getActivity()).getUser());
                     break;
                 default:
                     throw new UnsupportedOperationException("Unknown section: " + mSectionNumber);

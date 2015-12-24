@@ -22,10 +22,12 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
     private Cursor mCursor;
     private Context mContext;
     private View mEmptyView;
+    private String mUser;
 
-    public AuctionAdapter(Context context, View emptyView) {
+    public AuctionAdapter(Context context, View emptyView, String user) {
         mEmptyView = emptyView;
         mContext = context;
+        mUser = user;
     }
 
     @Override
