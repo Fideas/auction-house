@@ -52,6 +52,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <service android:name=".service.BiddingBotService" />
+        <receiver
+            android:name=".service.BiddingBotService$AlarmReceiver"
+            android:enabled="true" />
     </application>
 
 </manifest>

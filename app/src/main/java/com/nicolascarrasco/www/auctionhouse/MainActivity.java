@@ -1,5 +1,8 @@
 package com.nicolascarrasco.www.auctionhouse;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -27,6 +30,7 @@ import android.view.ViewGroup;
 
 import com.nicolascarrasco.www.auctionhouse.adapter.AuctionAdapter;
 import com.nicolascarrasco.www.auctionhouse.data.AuctionProvider;
+import com.nicolascarrasco.www.auctionhouse.service.BiddingBotService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,8 +79,18 @@ public class MainActivity extends AppCompatActivity {
         if (getIntent().hasExtra(Utilities.USER_EXTRA_KEY)) {
             mUser = getIntent().getStringExtra(Utilities.USER_EXTRA_KEY);
         } else if (PreferenceManager.getDefaultSharedPreferences(this).contains(USER_KEY)) {
-            mUser = PreferenceManager.getDefaultSharedPreferences(this).getString(USER_KEY,"");
+            mUser = PreferenceManager.getDefaultSharedPreferences(this).getString(USER_KEY, "");
         }
+
+        //Alarm to fire the daemon-like service
+        Intent intent = new Intent(this, BiddingBotService.AlarmReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + 5000, //AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                //AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                alarmIntent);
     }
 
     @Override

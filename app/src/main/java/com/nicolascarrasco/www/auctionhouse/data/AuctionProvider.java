@@ -40,6 +40,13 @@ public final class AuctionProvider {
                 type = "vnd.android.cursor.dir/auction")
         public static final Uri CONTENT_URI = buildUri(Path.AUCTIONS);
 
+        //Uri to match a random row
+        @ContentUri(path = Path.AUCTIONS + "/random",
+                type = "vnd.android.cursor.item/auction",
+                defaultSort = "RANDOM()",
+                limit = "1")
+        public static final Uri RANDOM = buildUri(Path.AUCTIONS, "random");
+
         //Uri to match auctions the user owns/has published
         @InexactContentUri(
                 name = "AUCTIONS_OWNER",
@@ -69,10 +76,9 @@ public final class AuctionProvider {
                 type = "vnd.android.cursor.item/auction",
                 whereColumn = AuctionColumns._ID,
                 pathSegment = 1)
-        public static Uri withId(long id){
+        public static Uri withId(long id) {
             return buildUri(Path.AUCTIONS, String.valueOf(id));
         }
-
 
         //TODO: Implement the Uri to match where the user has put a bid in the past
     }

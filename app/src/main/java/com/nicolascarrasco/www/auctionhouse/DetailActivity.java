@@ -77,7 +77,6 @@ public class DetailActivity extends AppCompatActivity
         ContentValues values = new ContentValues();
         //When bidding we will just add 5 dollars to the actual price
         values.put(AuctionColumns.PRICE, mPrice + 5.0f);
-        //TODO: Change hardcoded user
         values.put(AuctionColumns.CURRENT_BIDDER, mUser);
         getApplicationContext().getContentResolver().update(AuctionProvider.Auctions.withId(mId),
                 values,
