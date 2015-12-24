@@ -43,8 +43,8 @@ public class Utilities {
         return true;
     }
 
-    public static String formatPrice(String price) {
-        return "$".concat(price).concat(" USD");
+    public static String formatPrice(float price) {
+        return "$".concat(String.format("%.2f",price)).concat(" USD");
     }
 
     public static String formatDate(Context context, float dayInMillis) {

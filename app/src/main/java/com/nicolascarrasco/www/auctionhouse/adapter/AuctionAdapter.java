@@ -23,7 +23,7 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
     private Context mContext;
     private View mEmptyView;
 
-    public AuctionAdapter(Context context, View emptyView){
+    public AuctionAdapter(Context context, View emptyView) {
         mEmptyView = emptyView;
         mContext = context;
     }
@@ -50,7 +50,7 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
             throw new IllegalStateException("Could not move cursor to position " + position);
         }
         String title = mCursor.getString(mCursor.getColumnIndex(AuctionColumns.PRODUCT_NAME));
-        String price = mCursor.getString(mCursor.getColumnIndex(AuctionColumns.PRICE));
+        float price = mCursor.getFloat(mCursor.getColumnIndex(AuctionColumns.PRICE));
         String description = mCursor.getString(mCursor.getColumnIndex(AuctionColumns.DESCRIPTION));
         float date = mCursor.getFloat(mCursor.getColumnIndex(AuctionColumns.EXPIRATION_DATE));
 
@@ -68,7 +68,7 @@ public class AuctionAdapter extends RecyclerView.Adapter<AuctionAdapter.AuctionV
     public void swapCursor(Cursor newCursor) {
         this.mCursor = newCursor;
         notifyDataSetChanged();
-        if(getItemCount() == 0){
+        if (getItemCount() == 0) {
             mEmptyView.setVisibility(View.VISIBLE);
         } else {
             mEmptyView.setVisibility(View.INVISIBLE);
