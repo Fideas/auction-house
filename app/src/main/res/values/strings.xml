@@ -40,6 +40,7 @@
     <string name="prompt_description">Product Description</string>
     <string name="error_invalid_price">Price must have exactly zero or two decimals</string>
     <string name="error_invalid_date">Date must be formatted as MM/DD/YYYY</string>
+    <string name="create_auction">Create Auction</string>
 
     <!-- Strings for the DetailedActivity -->
     <string name="label_bid_button">Bid</string>

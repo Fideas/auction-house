@@ -81,9 +81,21 @@
         <EditText
             android:id="@+id/description_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top|left"
             android:hint="@string/prompt_description"
-            android:inputType="textMultiLine"
+            android:imeOptions="actionDone"
+            android:inputType="textCapSentences|textMultiLine"
+            android:lines="10"
             android:singleLine="false" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/create_auction_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/content_vertical_margin"
+            android:layout_marginTop="@dimen/content_vertical_margin"
+            android:text="@string/create_auction" />
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>

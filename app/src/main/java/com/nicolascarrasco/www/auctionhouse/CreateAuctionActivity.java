@@ -3,12 +3,12 @@ package com.nicolascarrasco.www.auctionhouse;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.nicolascarrasco.www.auctionhouse.data.AuctionColumns;
@@ -17,6 +17,8 @@ import com.nicolascarrasco.www.auctionhouse.data.AuctionProvider;
 public class CreateAuctionActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = CreateAuctionActivity.class.getSimpleName();
+
+    private String mUser;
     private TextView mTitleView;
     private TextView mPriceView;
     private TextView mDateView;
@@ -38,13 +40,15 @@ public class CreateAuctionActivity extends AppCompatActivity {
         mDateView = (TextView) findViewById(R.id.date_text);
         mDescriptionView = (TextView) findViewById(R.id.description_text);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        Button createAuctionButton = (Button) findViewById(R.id.create_auction_button);
+        createAuctionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptInsertAuction();
             }
         });
+
+        mUser = getIntent().getStringExtra(Utilities.USER_EXTRA_KEY);
     }
 
     private void attemptInsertAuction() {
@@ -80,13 +84,13 @@ public class CreateAuctionActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             insertAuction();
+            finish();
         }
     }
 
     private void insertAuction() {
         ContentValues values = new ContentValues();
-        //TODO: Replace hardcoded user
-        values.put(AuctionColumns.AUCTION_OWNER, "foo@example.com");
+        values.put(AuctionColumns.AUCTION_OWNER, mUser);
         values.put(AuctionColumns.PRODUCT_NAME, mTitleView.getText().toString());
         values.put(AuctionColumns.DESCRIPTION, mDescriptionView.getText().toString());
         //Add the price only if its not empty, otherwise insert the default value
